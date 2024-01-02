@@ -1,4 +1,5 @@
-import { auth } from './firebase-config.js';
+import { app } from './firebase-config.js';
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const loginForm = document.getElementById('loginForm');
 
@@ -8,8 +9,10 @@ loginForm.addEventListener('submit', (e) => {
   const email = loginForm.email.value;
   const password = loginForm.password.value;
 
+  const auth = getAuth(app);
+
   // Sign in with email and password
-  auth.signInWithEmailAndPassword(email, password)
+  signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       console.log('Login successful for user:', user.email);

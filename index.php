@@ -6,6 +6,7 @@
   <title>Admin Batama</title>
 
   <script type="module" src="firebase-config.js"></script> 
+  <script type="module" src="login.js"></script>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -53,8 +54,6 @@
           </div>
         </div>
       </form>
-      
-  <script type="module" src="login.js"></script>
   </div>
 </div>
 
