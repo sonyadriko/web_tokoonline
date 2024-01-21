@@ -46,9 +46,9 @@
   };
   const app = initializeApp(firebaseConfig);
   const database = getDatabase(app);
-  const dbref = ref(database, "/users");
+  const dbref = ref(database, '/users');
 
-  dbref.on('value', (snapshot) => {
+  dbref.on('value', function (snapshot) {
   const tableBody = document.getElementById('userTableBody');
   tableBody.innerHTML = '';
 
@@ -69,6 +69,8 @@
       </td>
     `;
   });
+}, function(error) {
+    console.error(error);
 });
 
 function hapusData(userId) {
