@@ -31,26 +31,14 @@
 </section>
 
 <script type="module">
-   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { app } from './firebase-config.js';
   import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
   
-  const firebaseConfig = {
-    apiKey: "AIzaSyD_jni1wD5X76VKKQEmW3Z_E2am7_4kQf0",
-    authDomain: "febriani-tokoonline.firebaseapp.com",
-    databaseURL: "https://febriani-tokoonline-default-rtdb.firebaseio.com",
-    projectId: "febriani-tokoonline",
-    storageBucket: "febriani-tokoonline.appspot.com",
-    messagingSenderId: "935116086644",
-    appId: "1:935116086644:web:b6cb7db2564731629e2021",
-    measurementId: "G-WCGR3DKS1E"
-  };
-  const app = initializeApp(firebaseConfig);
   const database = getDatabase(app);
-  const dbref = ref(database, '/users');
+  const reference = ref(database, '/Users');
 
-  dbref.on('value', function (snapshot) {
+  onValue(reference, function (snapshot) {
   const tableBody = document.getElementById('userTableBody');
-  tableBody.innerHTML = '';
 
   snapshot.forEach((childSnapshot) => {
     const userId = childSnapshot.key;
@@ -70,7 +58,7 @@
     `;
   });
 }, function(error) {
-    console.error(error);
+    console.error("Data erro  : " + error);
 });
 
 function hapusData(userId) {
@@ -89,35 +77,3 @@ function viewData(userId, email, nama, noTelepon, role) {
   $('#modal-view').modal('show');
 }
 </script>
-
-<!-- Modal untuk menampilkan data -->
-<div class="modal fade" id="modal-view">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">View Data</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            Email: <span id="email"></span>
-          </div>
-          <div class="form-group col-md-6">
-            Nama User: <span id="nama"></span>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            No Telepon: <span id="noTelepon"></span>
-          </div>
-          <div class="form-group col-md-6">
-            Role: <span id="role"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
