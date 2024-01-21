@@ -1,191 +1,121 @@
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-              <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Data Tabel User</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-lg">
-                  Tambah Data
-                </button>
-                <br></br>
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>ID User</th>
-                    <th>ID Alamat</th>
-                    <th>Nama User</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Validasi</th>
-                    <th>Nomer Rekening</th>
-                    <th>Account Number</th>
-                    <th>Expired Date</th>
-                    <th>Action</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    <?php 
-                      $no=0;
-                      $query = mysqli_query($koneksi, "SELECT * FROM tb_user");
-                      while($usr = mysqli_fetch_array($query)){
-                      $no++
-                    ?>
-                  <tr>
-                    <td><?php echo $no;?></td>
-                    <td><?php echo $usr['id_user'];?></td>
-                    <td><?php echo $usr['id_alamat'];?></td>
-                    <td><?php echo $usr['nama_user'];?></td>
-                    <td><?php echo $usr['email'];?></td>
-                    <td><?php echo $usr['password'];?></td>
-                    <td><?php echo $usr['validasi'];?></td>
-                    <td><?php echo $usr['nomer_rekening'];?></td>
-                    <td><?php echo $usr['account_number'];?></td>
-                    <td><?php echo $usr['expired_date'];?></td>
-                    <td>
-                      <a href="CRUD/hapus_datauser.php?id_user=<?php echo $usr['id_user'];?>" class="btn btn-sm btn-danger">Hapus</a>
-                      <a href="edit_datauser.php?id_user=<?php echo $usr['id_user'];?>" class="btn btn-sm btn-success">Edit</a>
-                      <a href="" class="view-data btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-view" 
-                        data-email="<?php echo $usr['email'];?>"
-                        data-password="<?php echo $usr['password'];?>"
-                        data-nama_user="<?php echo $usr['nama_user'];?>"
-                        data-validasi="<?php echo $usr['validasi'];?>"
-                        data-expired_date="<?php echo $usr['expired_date'];?>"
-                        data-account_number="<?php echo $usr['account_number'];?>"
-                        data-nomer_rekening="<?php echo $usr['nomer_rekening'];?>">View Data</a>
-                    </td>
-                  </tr>
-                  <?php }?>
-                  </tbody>
-                  <!--
-                  <tfoot>
-                  <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                  </tr>
-                  </tfoot>
-                  -->
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
-    </section>
-    <div class="modal fade" id="modal-lg">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Tambah Data User</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <form method="get" action="CRUD/tambah_datauser.php">
-            <div class="modal-body">
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="inputEmail4">Email</label>
-                  <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="inputPassword4">Password</label>
-                  <input type="password" class="form-control" id="inputPassword4" placeholder="Password" name="password">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputAddress">Nama User</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="Nama Lengkap" name="nama_user">
-              </div>
-              <div class="form-group">
-                <label for="inputAddress2">Validasi</label>
-                <input type="text" class="form-control" id="inputAddress2" placeholder="OK / Tidak" name="validasi">
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="inputCity">Nomer Rekening</label>
-                  <input type="text" class="form-control" id="inputCity" name="nomer_rekening">
-                </div>
-                <div class="form-group col-md-4">
-                  <label for="inputState">Account Number</label>
-                  <input type="text" class="form-control" id="inputCity" name="account_number">
-                </div>
-                <div class="form-group col-md-2">
-                  <label for="inputZip">Expired Date</label>
-                  <input type="text" class="form-control" id="inputZip" name="expired_date">
-                </div>
-              </div>
-              </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
-              <button type="submit" class="btn btn-primary">Simpan</button>
-            </div>
-          </div>
-          </form>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
+<!-- Main content -->
 
-      <!--Modal view Data-->
-      <div class="modal fade" id="modal-view">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">View Data</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <form method="" action="">
-            <div class="modal-body">
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  Email           : <span id="email"></span>
-                </div>
-                <div class="form-group col-md-6">
-                  Password        : <span id="password"></span>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  Nama User       : <span id="nama_user"></span>
-                </div>
-                <div class="form-group col-md-6">
-                  Validasi        : <span id="validasi"></span>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  Nomer Rekening  : <span id="nomer_rekening"></span>
-                </div>
-                <div class="form-group col-md-6">
-                  Account Number  : <span id="account_number"></span>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  Expired Date    : <span id="expired_date"></span>
-                </div>
-              </div>
-              </div>
-              </div>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Data Tabel User</h3>
           </div>
-          </form>
-          <!-- /.modal-content -->
+          <div class="card-body">
+            <br></br>
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama User</th>
+                  <th>Email</th>
+                  <th>No Telepon</th>
+                  <th>Role</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="userTableBody"></tbody>
+            </table>
+          </div>
         </div>
-        <!-- /.modal-dialog -->
       </div>
+    </div>
+  </div>
+</section>
+
+<script type="module">
+   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+  
+  const firebaseConfig = {
+    apiKey: "AIzaSyD_jni1wD5X76VKKQEmW3Z_E2am7_4kQf0",
+    authDomain: "febriani-tokoonline.firebaseapp.com",
+    databaseURL: "https://febriani-tokoonline-default-rtdb.firebaseio.com",
+    projectId: "febriani-tokoonline",
+    storageBucket: "febriani-tokoonline.appspot.com",
+    messagingSenderId: "935116086644",
+    appId: "1:935116086644:web:b6cb7db2564731629e2021",
+    measurementId: "G-WCGR3DKS1E"
+  };
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  const dbref = ref(database, "/users");
+
+  dbref.on('value', (snapshot) => {
+  const tableBody = document.getElementById('userTableBody');
+  tableBody.innerHTML = '';
+
+  snapshot.forEach((childSnapshot) => {
+    const userId = childSnapshot.key;
+    const userData = childSnapshot.val();
+
+    const row = tableBody.insertRow();
+    row.innerHTML = `
+      <td>${userId}</td>
+      <td>${userData.nama}</td>
+      <td>${userData.email}</td>
+      <td>${userData.noTelepon}</td>
+      <td>${userData.role}</td>
+      <td>
+        <button class="btn btn-sm btn-danger" onclick="hapusData('${userId}')">Hapus</button>
+        <button class="btn btn-sm btn-success" onclick="viewData('${userId}', '${userData.email}', '${userData.nama}', '${userData.noTelepon}', '${userData.role}')">View</button>
+      </td>
+    `;
+  });
+});
+
+function hapusData(userId) {
+  dbref.child(userId).remove();
+}
+
+function viewData(userId, email, nama, noTelepon, role) {
+  // Setel nilai pada elemen modal sesuai dengan data yang diterima
+  document.getElementById('userId').innerText = userId;
+  document.getElementById('email').innerText = email;
+  document.getElementById('nama').innerText = nama;
+  document.getElementById('noTelepon').innerText = noTelepon;
+  document.getElementById('role').innerText = role;
+
+  // Tampilkan modal
+  $('#modal-view').modal('show');
+}
+</script>
+
+<!-- Modal untuk menampilkan data -->
+<div class="modal fade" id="modal-view">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">View Data</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            Email: <span id="email"></span>
+          </div>
+          <div class="form-group col-md-6">
+            Nama User: <span id="nama"></span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            No Telepon: <span id="noTelepon"></span>
+          </div>
+          <div class="form-group col-md-6">
+            Role: <span id="role"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

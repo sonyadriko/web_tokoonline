@@ -24,7 +24,7 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="app/index2.html" class="h1"><b>Admin</b>Batama</a>
+      <h1><b>Admin</b>Batama</h1>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>

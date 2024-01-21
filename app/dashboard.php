@@ -1,13 +1,13 @@
 <?php
-  $query1 = mysqli_query($koneksi, "SELECT * FROM tb_user");
-  $query2 = mysqli_query($koneksi, "SELECT * FROM tb_admin");
-  $query3 = mysqli_query($koneksi, "SELECT * FROM tb_produk");
-  $query4 = mysqli_query($koneksi, "SELECT * FROM tb_toko");
+  // $query1 = mysqli_query($koneksi, "SELECT * FROM tb_user");
+  // $query2 = mysqli_query($koneksi, "SELECT * FROM tb_admin");
+  // $query3 = mysqli_query($koneksi, "SELECT * FROM tb_produk");
+  // $query4 = mysqli_query($koneksi, "SELECT * FROM tb_toko");
 
-  $jml_user = mysqli_num_rows($query1);
-  $jml_admin = mysqli_num_rows($query2);
-  $jml_produk = mysqli_num_rows($query3);
-  $jml_toko = mysqli_num_rows($query4);
+  // $jml_user = mysqli_num_rows($query1);
+  // $jml_admin = mysqli_num_rows($query2);
+  // $jml_produk = mysqli_num_rows($query3);
+  // $jml_toko = mysqli_num_rows($query4);
 ?>
 
 <section class="content">
@@ -19,7 +19,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3><?php echo number_format($jml_user)?></h3>
+                <!-- <h3><?php echo number_format($jml_user)?></h3> -->
 
                 <p>User</p>
               </div>
@@ -35,7 +35,7 @@
             <!-- small box -->
             <div class="small-box bg-primary">
               <div class="inner">
-                <h3><?php echo number_format($jml_admin);?></h3>
+                <!-- <h3><?php echo number_format($jml_admin);?></h3> -->
 
                 <p>Admin</p>
               </div>
@@ -51,7 +51,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3><?php echo number_format($jml_produk);?></h3>
+                <!-- <h3><?php echo number_format($jml_produk);?></h3> -->
 
                 <p>Produk</p>
               </div>
@@ -67,7 +67,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3><?php echo number_format($jml_user);?></h3>
+                <!-- <h3><?php echo number_format($jml_user);?></h3> -->
 
                 <p>Toko</p>
               </div>

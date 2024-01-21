@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-session_start();
-if(!$_SESSION['nama']){
-  header('Location: ../');
-}
 include('header.php');?>
-<?php include('../conf/config.php');?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -22,7 +17,7 @@ include('header.php');?>
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <?php include('logo.php');?>
+    <!-- <?php include('logo.php');?> -->
 
     <!-- Sidebar -->
     <?php include('sidebar.php');?>
