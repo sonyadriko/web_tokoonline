@@ -13,41 +13,12 @@
                   <thead>
                   <tr>
                     <th>No</th>
-                    <th>ID Toko</th>
-                    <th>ID User</th>
+                    <th>ID Users</th>
                     <th>ID Alamat</th>
                     <th>Nama Toko</th>
-                    <th>Gambar</th>
                   </tr>
                   </thead>
-                  <tbody>
-                    <?php 
-                      $no=0;
-                      $query = mysqli_query($koneksi, "SELECT * FROM tb_toko");
-                      while($usr = mysqli_fetch_array($query)){
-                      $no++
-                    ?>
-                  <tr>
-                    <td><?php echo $no;?></td>
-                    <td width='5%'><?php echo $usr['id_toko'];?></td>
-                    <td width='5%'><?php echo $usr['id_user'];?></td>
-                    <td width='5%'><?php echo $usr['id_alamat'];?></td>
-                    <td><?php echo $usr['nama_toko'];?></td>
-                    <td><?php echo $usr['image'];?></td>
-                  </tr>
-                  <?php }?>
-                  </tbody>
-                  <!--
-                  <tfoot>
-                  <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                  </tr>
-                  </tfoot>
-                  -->
+                  <tbody id="userTableBody"></tbody>
                 </table>
               </div>
               <!-- /.card-body -->
@@ -60,3 +31,59 @@
       </div>
       <!-- /.container-fluid -->
     </section>
+
+    <script type="module">
+  import { app } from './firebase-config.js';
+  import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+  
+  const database = getDatabase(app);
+  const reference = ref(database, '/Toko');
+
+  onValue(reference, function (snapshot) {
+    const tableBody = document.getElementById('userTableBody');
+
+    // Clear existing table rows
+    tableBody.innerHTML = "";
+
+    let rowIndex = 1; // Initialize the rowIndex
+
+    snapshot.forEach((childSnapshot) => {
+      const userId = childSnapshot.key;
+      const userData = childSnapshot.val();
+
+      const row = tableBody.insertRow();
+      row.innerHTML = `
+        <td>${rowIndex}</td>
+        <td>${userData.id_users}</td>
+        <td>${userData.id_alamat}</td>
+        <td>${userData.nama}</td>
+        <td>
+          <button class="btn btn-sm btn-danger" onclick="hapusData('${userId}')">Hapus</button>
+        </td>
+      `;
+
+      rowIndex++; // Increment the rowIndex for the next row
+    });
+  }, function(error) {
+    console.error("Data error: " + error);
+  });
+
+  function hapusData(userId) {
+    // Assuming dbref is a reference to your database
+    // Make sure you have dbref defined
+    const produkRef = ref(database, `Produks/${userId}`);
+    remove(produkRef);
+  }
+
+  function viewData(userId, email, nama, noTelepon, role) {
+    // Set values in the modal
+    document.getElementById('userId').innerText = userId;
+    document.getElementById('email').innerText = email;
+    document.getElementById('nama').innerText = nama;
+    document.getElementById('noTelepon').innerText = noTelepon;
+    document.getElementById('role').innerText = role;
+
+    // Assuming you have a modal with the id 'modal-view'
+    $('#modal-view').modal('show');
+  }
+</script>

@@ -3,7 +3,6 @@
 <?php 
 session_start();
 include('header.php');?>
-<?php include('../conf/config.php');?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 

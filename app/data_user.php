@@ -1,5 +1,4 @@
 <!-- Main content -->
-
 <section class="content">
   <div class="container-fluid">
     <div class="row">
@@ -9,7 +8,6 @@
             <h3 class="card-title">Data Tabel User</h3>
           </div>
           <div class="card-body">
-            <br></br>
             <table id="example1" class="table table-bordered table-striped">
               <thead>
                 <tr>
@@ -32,48 +30,57 @@
 
 <script type="module">
   import { app } from './firebase-config.js';
-  import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+  import { getDatabase, ref, onValue, child } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
   
   const database = getDatabase(app);
   const reference = ref(database, '/Users');
 
   onValue(reference, function (snapshot) {
-  const tableBody = document.getElementById('userTableBody');
+    const tableBody = document.getElementById('userTableBody');
+    // Clear existing table rows
+    tableBody.innerHTML = "";
 
-  snapshot.forEach((childSnapshot) => {
-    const userId = childSnapshot.key;
-    const userData = childSnapshot.val();
+    let index = 1; // Initialize the index
 
-    const row = tableBody.insertRow();
-    row.innerHTML = `
-      <td>${userId}</td>
-      <td>${userData.nama}</td>
-      <td>${userData.email}</td>
-      <td>${userData.noTelepon}</td>
-      <td>${userData.role}</td>
-      <td>
-        <button class="btn btn-sm btn-danger" onclick="hapusData('${userId}')">Hapus</button>
-        <button class="btn btn-sm btn-success" onclick="viewData('${userId}', '${userData.email}', '${userData.nama}', '${userData.noTelepon}', '${userData.role}')">View</button>
-      </td>
-    `;
+    snapshot.forEach((childSnapshot) => {
+      const userId = childSnapshot.key;
+      const userData = childSnapshot.val();
+
+      const row = tableBody.insertRow();
+      row.innerHTML = `
+        <td>${index}</td>
+        <td>${userData.nama}</td>
+        <td>${userData.email}</td>
+        <td>${userData.noTelepon}</td>
+        <td>${userData.role}</td>
+        <td>
+          <button class="btn btn-sm btn-danger" onclick="hapusData('${userId}')">Hapus</button>
+          <button class="btn btn-sm btn-success" onclick="viewData('${userId}', '${userData.email}', '${userData.nama}', '${userData.noTelepon}', '${userData.role}')">View</button>
+        </td>
+      `;
+
+      index++; // Increment the index for the next row
+    });
+  }, function(error) {
+      console.error("Error fetching data: ", error);
   });
-}, function(error) {
-    console.error("Data erro  : " + error);
-});
 
-function hapusData(userId) {
-  dbref.child(userId).remove();
-}
+  function hapusData(userId) {
+    // Assuming dbref is a reference to your database
+    // Make sure you have dbref defined
+    const userRef = child(ref(database, 'Users'), userId);
+    userRef.remove();
+  }
 
-function viewData(userId, email, nama, noTelepon, role) {
-  // Setel nilai pada elemen modal sesuai dengan data yang diterima
-  document.getElementById('userId').innerText = userId;
-  document.getElementById('email').innerText = email;
-  document.getElementById('nama').innerText = nama;
-  document.getElementById('noTelepon').innerText = noTelepon;
-  document.getElementById('role').innerText = role;
+  function viewData(userId, email, nama, noTelepon, role) {
+    // Set values in the modal
+    document.getElementById('userId').innerText = userId;
+    document.getElementById('email').innerText = email;
+    document.getElementById('nama').innerText = nama;
+    document.getElementById('noTelepon').innerText = noTelepon;
+    document.getElementById('role').innerText = role;
 
-  // Tampilkan modal
-  $('#modal-view').modal('show');
-}
+    // Show the modal
+    $('#modal-view').modal('show');
+  }
 </script>

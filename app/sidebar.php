@@ -53,24 +53,24 @@
                   <p>Tabel User</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="tabeladmin.php?page=date-admin" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tabel Admin</p>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a href="tabelproduk.php?page=date-produk" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tabel Produk</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="tabelalamat.php?page=date-alamat" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tabel Alamat</p>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a href="tabeltoko.php?page=date-toko" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
