@@ -30,9 +30,25 @@
 
 <script type="module">
   import { app } from './firebase-config.js';
-  import { getDatabase, ref, onValue, child } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-  
+  import { getDatabase, ref, onValue, child, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
   const database = getDatabase(app);
+
+  // Define hapusData in the global scope
+  window.hapusData = function(userId, userName) {
+    const confirmation = confirm(`Apakah Anda yakin ingin menghapus user ${userName}?`);
+    if (confirmation) {
+      const userRef = child(ref(database, 'Users'), userId);
+      remove(userRef)
+        .then(() => {
+          console.log(`User ${userName} berhasil dihapus.`);
+        })
+        .catch((error) => {
+          console.error(`Error deleting user: ${error.message}`);
+        });
+    }
+  };
+
   const reference = ref(database, '/Users');
 
   onValue(reference, function (snapshot) {
@@ -53,34 +69,12 @@
         <td>${userData.email}</td>
         <td>${userData.noTelepon}</td>
         <td>${userData.role}</td>
-        <td>
-          <button class="btn btn-sm btn-danger" onclick="hapusData('${userId}')">Hapus</button>
-          <button class="btn btn-sm btn-success" onclick="viewData('${userId}', '${userData.email}', '${userData.nama}', '${userData.noTelepon}', '${userData.role}')">View</button>
-        </td>
+        <td><button class="btn btn-sm btn-danger" onclick="hapusData('${userId}', '${userData.nama}')">Hapus</button></td>
       `;
 
       index++; // Increment the index for the next row
     });
-  }, function(error) {
-      console.error("Error fetching data: ", error);
+  }, function (error) {
+    console.error("Error fetching data: ", error);
   });
-
-  function hapusData(userId) {
-    // Assuming dbref is a reference to your database
-    // Make sure you have dbref defined
-    const userRef = child(ref(database, 'Users'), userId);
-    userRef.remove();
-  }
-
-  function viewData(userId, email, nama, noTelepon, role) {
-    // Set values in the modal
-    document.getElementById('userId').innerText = userId;
-    document.getElementById('email').innerText = email;
-    document.getElementById('nama').innerText = nama;
-    document.getElementById('noTelepon').innerText = noTelepon;
-    document.getElementById('role').innerText = role;
-
-    // Show the modal
-    $('#modal-view').modal('show');
-  }
 </script>

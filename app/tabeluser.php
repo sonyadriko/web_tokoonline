@@ -17,7 +17,7 @@ include('header.php');?>
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <?php include('logo.php');?>
+    <!-- <?php include('logo.php');?> -->
 
     <!-- Sidebar -->
     <?php include('sidebar.php');?>

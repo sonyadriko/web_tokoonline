@@ -5,7 +5,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">DataTable with default features</h3>
+            <h3 class="card-title">Data Tabel Produk</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -37,10 +37,31 @@
 
 <script type="module">
   import { app } from './firebase-config.js';
+  import { getAuth } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
   import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-  
+
+  const auth = getAuth(app);
   const database = getDatabase(app);
   const reference = ref(database, '/Produks');
+
+  // Define hapusData in the global scope
+  window.hapusData = function(userId) {
+    if (auth.currentUser) {
+      console.log('Deleting data for userId:', userId);
+      const produkRef = ref(database, `Produks/${userId}`);
+      console.log('Produk Reference:', produkRef);
+      
+      remove(produkRef)
+        .then(() => {
+          console.log('Data deleted successfully.');
+        })
+        .catch((error) => {
+          console.error('Error deleting data:', error);
+        });
+    } else {
+      console.error('User is not authenticated.');
+    }
+  };
 
   onValue(reference, function (snapshot) {
     const tableBody = document.getElementById('userTableBody');
@@ -53,6 +74,7 @@
     snapshot.forEach((childSnapshot) => {
       const userId = childSnapshot.key;
       const userData = childSnapshot.val();
+      
 
       const row = tableBody.insertRow();
       row.innerHTML = `
@@ -72,23 +94,4 @@
   }, function(error) {
     console.error("Data error: " + error);
   });
-
-  function hapusData(userId) {
-    // Assuming dbref is a reference to your database
-    // Make sure you have dbref defined
-    const produkRef = ref(database, `Produks/${userId}`);
-    remove(produkRef);
-  }
-
-  function viewData(userId, email, nama, noTelepon, role) {
-    // Set values in the modal
-    document.getElementById('userId').innerText = userId;
-    document.getElementById('email').innerText = email;
-    document.getElementById('nama').innerText = nama;
-    document.getElementById('noTelepon').innerText = noTelepon;
-    document.getElementById('role').innerText = role;
-
-    // Assuming you have a modal with the id 'modal-view'
-    $('#modal-view').modal('show');
-  }
 </script>

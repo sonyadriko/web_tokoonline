@@ -7,9 +7,9 @@ include('header.php');?>
 <div class="wrapper">
 
   <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
+  <!-- <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+  </div> -->
 
   <!-- Navbar -->
   <?php include('navbar.php');?>
@@ -18,7 +18,7 @@ include('header.php');?>
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <?php include('logo.php');?>
+    <!-- <?php include('logo.php');?> -->
 
     <!-- Sidebar -->
     <?php include('sidebar.php');?>
@@ -27,8 +27,6 @@ include('header.php');?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <?php include('content_header.php');?>
     <!-- /.content-header -->
 
     <!-- Main content -->

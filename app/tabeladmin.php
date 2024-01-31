@@ -13,7 +13,7 @@ include('header.php');?>
   </div>
 
   <!-- Navbar -->
-  <?php include('navbar.php');?>
+  <!-- <?php include('navbar.php');?> -->
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
