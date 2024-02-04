@@ -1,20 +1,12 @@
-<ifmodule mod_rewrite.c>
+RewriteEngine On
 
-    <ifmodule mod_negotiation.c>
-        Options -MultiViews
-    </ifmodule>
+RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
+RewriteRule ^(.*) - [E=BASE:%1]
 
-    RewriteEngine On
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule ^app\.php(/(.*)|$) %{ENV:BASE}/$2 [R=301,L]
 
-    RewriteCond %{REQUEST_FILENAME} -d [OR]
-    RewriteCond %{REQUEST_FILENAME} -f
-    RewriteRule ^ ^$1 [N]
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule .? - [L]
 
-    RewriteCond %{REQUEST_URI} (\.\w+$) [NC]
-    RewriteRule ^(.*)$ public/$1
-
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ server.php
-
-</ifmodule>
+RewriteRule .? %{ENV:BASE}/app.php [L]
