@@ -26,7 +26,7 @@
 										<a href="home.php">Home</a>
 									</li>
 									<li><a href="about.php">About Us</a></li>
-									<li><a href="contact2.php">Contact Us</a></li>
+									<li><a href="contact.php">Contact Us</a></li>
 								</ul>
 							</nav>
 							<!-- <a href="submit-coupon.html" class="btn-primary text-center text-uppercase">Submit Coupon</a> -->

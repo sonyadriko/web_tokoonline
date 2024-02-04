@@ -69,11 +69,6 @@
 	</div>
 	<!-- main container of all the page elements end -->
 	<!-- include jQuery -->
-	<script src="style/js/jquery.js"></script>
-	<!-- include jQuery -->
-	<script src="style/js/plugins.js"></script>
-	<!-- include jQuery -->
-	<script src="style/js/jquery.main.js"></script>
-	<div id="style-changer" data-src="style-changer.html"></div>
+	<?php include 'script_js.php';?>
 </body>
 </html>
