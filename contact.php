@@ -97,7 +97,7 @@
 		<span id="back-top" class="text-center md-round fa fa-angle-up"></span>
 		<!-- loader of the page -->
 		<div id="loader" class="loader-holder">
-			<div class="block"><img src="images/svg/bars.svg" width="60" alt="loader"></div>
+			<div class="block"><img src="style/images/svg/bars.svg" width="60" alt="loader"></div>
 		</div>
 	</div>
 	<!-- main container of all the page elements end -->
