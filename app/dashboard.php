@@ -9,19 +9,19 @@
 
   onValue(reference, function(snapshot) {
     const jmlUser = Object.keys(snapshot.val()).length;
-    console.log(`Jumlah user: ${jmlUser}`);
+    // console.log(`Jumlah user: ${jmlUser}`);
     document.getElementById('jmlUserPlaceholder').textContent = jmlUser;
   });
 
   onValue(reference2, function(snapshot) {
     const jmlToko = Object.keys(snapshot.val()).length;
-    console.log(`Jumlah Toko: ${jmlToko}`);
+    // console.log(`Jumlah Toko: ${jmlToko}`);
     document.getElementById('jmlTokoPlaceholder').textContent = jmlToko;
   });
 
   onValue(reference3, function(snapshot) {
     const jmlProduk = Object.keys(snapshot.val()).length;
-    console.log(`Jumlah Produk: ${jmlProduk}`);
+    // console.log(`Jumlah Produk: ${jmlProduk}`);
     document.getElementById('jmlProdukPlaceholder').textContent = jmlProduk;
   });
 

@@ -12,13 +12,21 @@ loginForm.addEventListener('submit', (e) => {
 
   const auth = getAuth(app);
 
-  // Sign in with email and password
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       console.log('Login successful for user:', user.email);
+
+      // Simpan informasi pengguna ke dalam Realtime Database
+      const db = getDatabase(app);
+      const userRef = ref(db, 'users/' + user.uid);
+      set(userRef, {
+        email: user.email,
+        // Tambahkan data lain yang ingin disimpan, misalnya nama pengguna
+      });
+
       alert('Login successful!');
-      window.location.href = 'app/index.php';  
+      window.location.href = 'app/index.php';
     })
     .catch((error) => {
       console.error('Login error:', error.message);

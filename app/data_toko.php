@@ -64,7 +64,7 @@
           // Fetch address details based on id_alamat
           const alamatId = tokoData.id_alamat;
           const alamatRef = ref(database, `/Alamat/${userId}/${alamatId}`);
-          console.log(alamatId);
+          // console.log(alamatId);
           onValue(alamatRef, (alamatSnapshot) => {
             const alamatData = alamatSnapshot.val();
 
