@@ -28,7 +28,7 @@
 							<nav id="nav">
 								<ul class="list-unstyled">
 									<li>
-										<a href="home.php">Home</a>
+										<a href="index.php">Home</a>
 									</li>
 									<li><a href="about.php">About Us</a></li>
 									<li class="active">
