@@ -15,7 +15,7 @@
                   <th>Nama User</th>
                   <th>Email</th>
                   <th>No Telepon</th>
-                  <th>Role</th>
+                  <!-- <th>Role</th> -->
                   <th>Action</th>
                 </tr>
               </thead>
@@ -68,7 +68,6 @@
         <td>${userData.nama}</td>
         <td>${userData.email}</td>
         <td>${userData.noTelepon}</td>
-        <td>${userData.role}</td>
         <td><button class="btn btn-sm btn-danger" onclick="hapusData('${userId}', '${userData.nama}')">Hapus</button></td>
       `;
 

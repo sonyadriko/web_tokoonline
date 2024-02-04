@@ -75,7 +75,7 @@
               <td>${alamatData.alamat}</td>
               <td>${tokoData.nama}</td>
               <td>
-                <button class="btn btn-sm btn-danger" onclick="hapusData('${userId}', '${tokoId}')">Hapus</button>
+                <button class="btn btn-sm btn-danger" onclick="hapusData('${userId}')">Hapus</button>
               </td>
             `;
 
@@ -88,11 +88,10 @@
     console.error("Data error: " + error);
   });
 
-  function hapusData(userId, tokoId) {
-    // Assuming dbref is a reference to your database
-    // Make sure you have dbref defined
-    const tokoRef = ref(database, `Toko/${userId}/${tokoId}`);
-    remove(tokoRef);
-  }
+  window.hapusData = function (userId) {
+    const tokoRef = ref(database, `Toko/${userId}`);
+    console.log(tokoRef);
+  };
 
 </script>
+<!-- remove(tokoRef); -->

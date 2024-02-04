@@ -1,14 +1,33 @@
-<?php
-  // $query1 = mysqli_query($koneksi, "SELECT * FROM tb_user");
-  // $query2 = mysqli_query($koneksi, "SELECT * FROM tb_admin");
-  // $query3 = mysqli_query($koneksi, "SELECT * FROM tb_produk");
-  // $query4 = mysqli_query($koneksi, "SELECT * FROM tb_toko");
+<script type="module">
+  import { app } from './firebase-config.js';
+  import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+  
+  const database = getDatabase(app);
+  const reference = ref(database, '/Users');
+  const reference2 = ref(database, '/Toko');
+  const reference3 = ref(database, '/Produks');
 
-  // $jml_user = mysqli_num_rows($query1);
-  // $jml_admin = mysqli_num_rows($query2);
-  // $jml_produk = mysqli_num_rows($query3);
-  // $jml_toko = mysqli_num_rows($query4);
-?>
+  onValue(reference, function(snapshot) {
+    const jmlUser = Object.keys(snapshot.val()).length;
+    console.log(`Jumlah user: ${jmlUser}`);
+    document.getElementById('jmlUserPlaceholder').textContent = jmlUser;
+  });
+
+  onValue(reference2, function(snapshot) {
+    const jmlToko = Object.keys(snapshot.val()).length;
+    console.log(`Jumlah Toko: ${jmlToko}`);
+    document.getElementById('jmlTokoPlaceholder').textContent = jmlToko;
+  });
+
+  onValue(reference3, function(snapshot) {
+    const jmlProduk = Object.keys(snapshot.val()).length;
+    console.log(`Jumlah Produk: ${jmlProduk}`);
+    document.getElementById('jmlProdukPlaceholder').textContent = jmlProduk;
+  });
+
+
+
+</script>
 
 <section class="content">
       <div class="container-fluid">
@@ -19,8 +38,8 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <!-- <h3><?php echo number_format($jml_user)?></h3> -->
-
+              <h3 id="jmlUserPlaceholder">0</h3>
+              
                 <p>User</p>
               </div>
               <div class="icon">
@@ -30,29 +49,11 @@
             </div>
           </div>
 
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-primary">
-              <div class="inner">
-                <!-- <h3><?php echo number_format($jml_admin);?></h3> -->
-
-                <p>Admin</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="tabeladmin.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <!-- <h3><?php echo number_format($jml_produk);?></h3> -->
-
+              <h3 id="jmlProdukPlaceholder">0</h3>
                 <p>Produk</p>
               </div>
               <div class="icon">
@@ -67,7 +68,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <!-- <h3><?php echo number_format($jml_user);?></h3> -->
+              <h3 id="jmlTokoPlaceholder">0</h3>
 
                 <p>Toko</p>
               </div>
@@ -92,6 +93,9 @@
           </section>
           <!-- right col -->
         </div>
+     <!-- const jmlUser = snapshot.numChildren(); -->
+
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>
+  
