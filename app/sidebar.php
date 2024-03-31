@@ -77,6 +77,12 @@ if (uidPenggunaSaatIni) {
                   <p>Tabel Toko</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="tabelkategori.php?page=date-kategori" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tabel Kategori</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
